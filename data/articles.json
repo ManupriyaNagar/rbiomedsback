@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "title": "Innovating the path to better wellness",
+    "description": "Our latest research into genomic medicine is uncovering new ways to personalize patient care at a global scale.",
+    "image": "https://images.unsplash.com/photo-1576091160550-217359f42f8c?q=80&w=2070&auto=format&fit=crop",
+    "category": "Research",
+    "date": "Feb 03, 2026",
+    "createdAt": "2026-02-03T08:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": "The future of bio-tech research",
+    "description": "Exploring the intersection of artificial intelligence and biological systems to accelerate drug discovery.",
+    "image": "https://images.unsplash.com/photo-1579154276502-7bc24618?q=80&w=2070&auto=format&fit=crop",
+    "category": "Innovation",
+    "date": "Feb 02, 2026",
+    "createdAt": "2026-02-02T08:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": "Global health outreach programs",
+    "description": "How Rbiomeds is expanding its footprint to provide critical diagnostic tools to remote regions across Southeast Asia.",
+    "image": "https://images.unsplash.com/photo-1579254276502-7bc24618?q=80&w=2070&auto=format&fit=crop",
+    "category": "Community",
+    "date": "Feb 01, 2026",
+    "createdAt": "2026-02-01T08:00:00.000Z"
+  },
+  {
+    "id": 101,
+    "title": "Innovation in Diagnostics",
+    "description": "Rbiomeds is pioneering new diagnostic protocols that reduce wait times by up to 60% in clinical settings.",
+    "image": "https://images.unsplash.com/photo-1579154276502-7bc24618?q=80&w=2070&auto=format&fit=crop",
+    "category": "Diagnostics",
+    "date": "July 24, 2026",
+    "createdAt": "2026-01-24T08:00:00.000Z"
+  },
+  {
+    "id": 1770111221840,
+    "title": "wfhoiwfh",
+    "description": "fwhrvwbf",
+    "image": "https://i.pinimg.com/1200x/31/63/33/316333833c172b0e13c651677810455d.jpg",
+    "category": "fvebowvi",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:33:41.874Z"
+  },
+  {
+    "id": 1770111333359,
+    "title": "d65f6uyg",
+    "description": "srtdytfgbj",
+    "image": "https://i.pinimg.com/736x/3c/a6/e7/3ca6e7803b73aca8917a391d708e0998.jpg",
+    "category": "f7yugihjn",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:35:33.359Z"
+  },
+  {
+    "id": 1770111359637,
+    "title": "e567rutigh",
+    "description": "dufyghjvb",
+    "image": "https://i.pinimg.com/736x/a1/f7/7c/a1f77caba530b1f03f85a975f8527503.jpg",
+    "category": "dytfjgjb",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:35:59.637Z"
+  },
+  {
+    "id": 1770111389241,
+    "title": "dtfyg",
+    "description": "sdytyfgj",
+    "image": "https://i.pinimg.com/736x/be/83/68/be8368ce86fcaaaa6c6024adc9b53fa4.jpg",
+    "category": "sdytfygj",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:36:29.241Z"
+  },
+  {
+    "id": 1770111405520,
+    "title": "sdytfugu",
+    "description": "dsytfhv",
+    "image": "https://i.pinimg.com/736x/02/92/e0/0292e025812bad316f567f7cca0124a5.jpg",
+    "category": "s65dytfugukj",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:36:45.520Z"
+  },
+  {
+    "id": 1770111423321,
+    "title": "dyytfug",
+    "description": "srtdyfhjvb",
+    "image": "https://i.pinimg.com/736x/02/92/e0/0292e025812bad316f567f7cca0124a5.jpg",
+    "category": "dyytfgh",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:37:03.322Z"
+  },
+  {
+    "id": 1770111428411,
+    "title": "sttdyfg",
+    "description": "strdyfjvhb",
+    "image": "https://i.pinimg.com/736x/02/92/e0/0292e025812bad316f567f7cca0124a5.jpg",
+    "category": "zstrxcghv",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:37:08.411Z"
+  },
+  {
+    "id": 1770111434095,
+    "title": "4wstdfygjh",
+    "description": "e65ryfguhjkn",
+    "image": "https://i.pinimg.com/736x/02/92/e0/0292e025812bad316f567f7cca0124a5.jpg",
+    "category": "w4dtfyghjn",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:37:14.095Z"
+  },
+  {
+    "id": 1770111440079,
+    "title": "5erytuyhikj",
+    "description": "s5dytfjgkbkn",
+    "image": "https://i.pinimg.com/736x/02/92/e0/0292e025812bad316f567f7cca0124a5.jpg",
+    "category": "strdfyjghjkn",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:37:20.079Z"
+  },
+  {
+    "id": 1770111446295,
+    "title": "e5tfyguhk",
+    "description": "w45e5rfyguhkjn",
+    "image": "https://i.pinimg.com/736x/02/92/e0/0292e025812bad316f567f7cca0124a5.jpg",
+    "category": "strdtgfhgbj",
+    "date": "February 03, 2026",
+    "createdAt": "2026-02-03T09:37:26.295Z"
+  }
+]
