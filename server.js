@@ -13,20 +13,20 @@ const PORT = process.env.PORT || 5001;
 
 // Cloudinary Configuration
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
+    cloud_name: (process.env.CLOUDINARY_CLOUD_NAME || "").trim(),
+    api_key: (process.env.CLOUDINARY_API_KEY || "").trim(),
+    api_secret: (process.env.CLOUDINARY_API_SECRET || "").trim()
 });
 
-// Cloudinary Storage configuration
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'rbiomeds_articles',
-        allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
-    },
+console.log("Cloudinary Config Re-verified:", {
+    cloud_name: cloudinary.config().cloud_name,
+    api_key: cloudinary.config().api_key,
+    secret_length: cloudinary.config().api_secret ? cloudinary.config().api_secret.length : 0,
+    secret_preview: cloudinary.config().api_secret ? `${cloudinary.config().api_secret.substring(0, 3)}...${cloudinary.config().api_secret.slice(-3)}` : 'none'
 });
 
+// Use Memory Storage instead of CloudinaryStorage for more control
+const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
     limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
@@ -64,13 +64,26 @@ const Article = mongoose.model('Article', ArticleSchema);
 
 app.use(cors());
 app.use(express.json());
-// Image Upload Endpoint
-app.post('/api/upload', upload.single('image'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ error: 'Please upload a file' });
+
+// Image Upload Endpoint with Direct Cloudinary Upload
+app.post('/api/upload', upload.single('image'), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'Please upload a file' });
+        }
+
+        // Upload directly using buffer
+        const fileBase64 = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+        const result = await cloudinary.uploader.upload(fileBase64, {
+            folder: 'rbiomeds_articles',
+        });
+
+        console.log("Upload successful:", result.secure_url);
+        res.json({ imageUrl: result.secure_url });
+    } catch (err) {
+        console.error("Cloudinary Error:", err);
+        res.status(500).json({ error: `Upload error: ${err.message || 'Unknown error'}` });
     }
-    // Cloudinary returns the full URL in path or secure_url
-    res.json({ imageUrl: req.file.path });
 });
 
 // Routes
