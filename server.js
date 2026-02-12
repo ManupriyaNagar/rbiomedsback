@@ -47,7 +47,7 @@ const ArticleSchema = new mongoose.Schema({
     },
     category: { type: String, default: "General" },
     sites: { type: [String], default: ["rbiomeds"] },
-    date: { type: String },
+    date: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now }
 });
 
@@ -55,6 +55,14 @@ const ArticleSchema = new mongoose.Schema({
 ArticleSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString();
+        // Always provide a formatted date string for the frontend
+        if (returnedObject.date) {
+            returnedObject.date = new Date(returnedObject.date).toLocaleDateString('en-US', {
+                month: 'long',
+                day: '2-digit',
+                year: 'numeric'
+            });
+        }
         delete returnedObject._id;
         delete returnedObject.__v;
     }
@@ -109,7 +117,7 @@ app.get('/api/articles', async (req, res) => {
                 query = { sites: site };
             }
         }
-        const articles = await Article.find(query).sort({ createdAt: -1 });
+        const articles = await Article.find(query).sort({ date: -1, createdAt: -1 });
         res.json(articles);
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch articles" });
@@ -118,7 +126,18 @@ app.get('/api/articles', async (req, res) => {
 
 app.post('/api/articles', async (req, res) => {
     try {
-        const { title, description, image, category, sites } = req.body;
+        const { title, description, image, category, sites, date } = req.body;
+        console.log("Backend received article creation request:", { title, date });
+
+        // Helper to parse date safely without timezone shifts
+        const parseDate = (dateStr) => {
+            if (!dateStr) return new Date();
+
+            // dateStr is expected to be YYYY-MM-DD
+            const [year, month, day] = dateStr.split('-').map(Number);
+            // Create date using local time parts
+            return new Date(year, month - 1, day);
+        };
 
         const newArticle = new Article({
             title,
@@ -126,11 +145,7 @@ app.post('/api/articles', async (req, res) => {
             image: image || undefined,
             category: category || undefined,
             sites: sites || ["rbiomeds"],
-            date: new Date().toLocaleDateString('en-US', {
-                month: 'long',
-                day: '2-digit',
-                year: 'numeric'
-            })
+            date: parseDate(date)
         });
 
         await newArticle.save();
@@ -142,16 +157,30 @@ app.post('/api/articles', async (req, res) => {
 
 app.put('/api/articles/:id', async (req, res) => {
     try {
-        const { title, description, image, category, sites } = req.body;
+        const { title, description, image, category, sites, date } = req.body;
+
+        const parseDate = (dateStr) => {
+            if (!dateStr) return null;
+            const [year, month, day] = dateStr.split('-').map(Number);
+            return new Date(year, month - 1, day);
+        };
+
+        const updateData = {
+            title,
+            description,
+            image,
+            category,
+            sites: sites || ["rbiomeds"]
+        };
+
+        const manualDate = parseDate(date);
+        if (manualDate) {
+            updateData.date = manualDate;
+        }
+
         const updatedArticle = await Article.findByIdAndUpdate(
             req.params.id,
-            {
-                title,
-                description,
-                image,
-                category,
-                sites: sites || ["rbiomeds"]
-            },
+            updateData,
             { new: true }
         );
 
