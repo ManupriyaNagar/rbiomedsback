@@ -68,9 +68,9 @@ exports.createArticle = async (req, res) => {
 
         const newArticle = new Article({
             title,
-            description,
+
             image: image || undefined,
-            category: category || undefined,
+
             sites: sites || ["rbiomeds"],
             date: parsedDate
         });
@@ -85,16 +85,16 @@ exports.createArticle = async (req, res) => {
 
 exports.updateArticle = async (req, res) => {
     try {
-        const { title, description, image, category, sites, date } = req.body;
+        const { title, image, sites, date } = req.body;
 
         const updatedDate = date ? parseDate(date) : undefined;
         console.log("Updating article:", { id: req.params.id, title, receivedDate: date, parsedDate: updatedDate?.toISOString() });
 
         const updateData = {
             title,
-            description,
+
             image,
-            category,
+
             sites: sites || ["rbiomeds"]
         };
 
